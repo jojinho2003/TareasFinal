@@ -72,14 +72,15 @@ nav a:hover {
 
 
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 30px;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  text-align: center;
 }
+
 
 
 input, select {
@@ -151,5 +152,22 @@ button:hover {
 }
 
 
+.dashboard-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
 
+.dashboard-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
 
+.dashboard-box {
+  flex: 1;
+  padding: 20px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

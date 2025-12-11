@@ -20,12 +20,42 @@ exports.create = async (req, res) => {
 
 exports.getAllByUser = async (req, res) => {
   try {
-    const tasks = await Task.find({ user: req.user }).populate('category');
+    const { category, done, due, expired } = req.query;
+
+    // Base: solo tareas del usuario autenticado
+    const query = { user: req.user };
+
+    // Filtrar por categoría
+    if (category) {
+      query.category = category;
+    }
+
+    // Filtrar por estado (done=true / done=false)
+    if (done === "true") query.done = true;
+    if (done === "false") query.done = false;
+
+    // Filtrar por fecha límite > hoy o < hoy
+    if (due === "future") {
+      query.dueDate = { $gt: new Date() };
+    }
+    if (due === "past") {
+      query.dueDate = { $lt: new Date() };
+    }
+
+    // Tareas vencidas: fecha < hoy y done = false
+    if (expired === "true") {
+      query.dueDate = { $lt: new Date() };
+      query.done = false;
+    }
+
+    const tasks = await Task.find(query).populate('category');
     res.json(tasks);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ msg: 'Server error' });
   }
 };
+
 
 exports.getOne = async (req, res) => {
   try {
