@@ -5,7 +5,7 @@ import PrivateRoute from './components/PrivateRoute';
 
 import Navbar from './components/Navbar'; 
 import Dashboard from './pages/Dashboard';
-import Login from './Login';
+import Login from './login';
 import Register from './Register';
 import Tasks from './pages/Tasks';
 import Categories from './pages/Categories';
